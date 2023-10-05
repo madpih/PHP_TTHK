@@ -1,5 +1,5 @@
 <?php
-require($_SERVER["DOCUMENT_ROOT"]."/../../config.php");
+require($_SERVER["DOCUMENT_ROOT"]."/../config.php");
 global $yhendus;
 
 if(isSet($_REQUEST["uusleht"])){
@@ -7,6 +7,7 @@ if(isSet($_REQUEST["uusleht"])){
     $kask->bind_param("ss", $_REQUEST["startingtime"], $_REQUEST["performanceAct"]);
     $kask->execute();
     header("Location: $_SERVER[PHP_SELF]?page=$_REQUEST[page]"); 
+
     $yhendus->close();
     exit();
 }
@@ -23,6 +24,12 @@ if(isSet($_REQUEST["uusleht2"])){
 
 if(isSet($_REQUEST["kustutasid"])){
     $kask=$yhendus->prepare("DELETE FROM schedule WHERE id=?");
+    $kask->bind_param("i", $_REQUEST["kustutasid"]);
+    $kask->execute();
+}
+
+if(isSet($_REQUEST["kustutasid"])){
+    $kask=$yhendus->prepare("DELETE FROM participants WHERE id=?");
     $kask->bind_param("i", $_REQUEST["kustutasid"]);
     $kask->execute();
 }

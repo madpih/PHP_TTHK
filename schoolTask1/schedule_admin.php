@@ -28,7 +28,7 @@ while($kask->fetch()){
         $kask->bind_result($id, $formatted_time, $performanceAct);
         $kask->execute();
         if($kask->fetch()){
-            echo '<h2 class="text-uppercase">'.htmlspecialchars($formatted_time).'</h2>';
+            echo '<h2>'.htmlspecialchars($formatted_time).'</h2>';
             echo '<h4 class="content">'.htmlspecialchars($performanceAct)."</h4>";
             echo "<a href='?page=schedule_admin&kustutasid=$id'><button class ='button button1'>Delete event</button></a>";
         
@@ -42,7 +42,7 @@ while($kask->fetch()){
     <div class="form-style">
         <form method="POST" action='?'>
             <input type="hidden" name="uusleht" value="jah" />
-            <input type="hidden" name="page" value="schedule_admin.php" />
+            <input type="hidden" name="page" value="schedule_admin" />
 
             <h2>Add new time and performance act</h2>
             <dl>

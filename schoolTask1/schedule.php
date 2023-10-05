@@ -8,8 +8,8 @@
     $kask->execute();
 
     while($kask->fetch()){
-        echo "<h2><b>".htmlspecialchars($formatted_time)."</b></h2>";
-        echo "<b><h4 class='content'>".htmlspecialchars($performanceAct)."</h4><b>";
+        echo "<h1><b>".htmlspecialchars($formatted_time)."</b></h1>";
+        echo "<b><h4 class='content bg'>".htmlspecialchars($performanceAct)."</h4><b>";
     }
     ?>
 </ul>

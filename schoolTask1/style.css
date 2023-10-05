@@ -63,7 +63,7 @@ body{
 	}
 
 h2 {
-	font-size:16px;
+	font-size:20px;
 	font-weight:bold;
 	color:#9b9b9b;
 	border:#aaaaaa 1px dashed;
@@ -72,7 +72,7 @@ h2 {
 	}
 p{
 	text-align:left;
-	font-size:12px;
+	font-size:14px;
 	color:#2d2d2d;
 	margin:5px;
 	padding:0;
@@ -81,6 +81,7 @@ p{
 p a{
     color:#3c9ddb;
     text-decoration:none;
+
 	}
 p a:hover{
     color:#4d4444;
@@ -88,7 +89,7 @@ p a:hover{
 .right{
 	float:right;
 	margin:5px 10px 5px 0;
-	font-size:12px;
+	font-size:16px;
 	}
 .right a{
 	color:#88aa00;
@@ -142,7 +143,7 @@ p a:hover{
   .button1 {background-color: #88aa00}
 
   h1{
-	font-size:18px;
+	font-size:22px;
 	font-weight:bold;
 	padding:5px;
 	margin: 5px;
@@ -211,6 +212,13 @@ input {
   h4 {
 	color:#88aa00;
 	font-weight: 400;
+
+	
+  }
+
+  .bg {
+	font-size: 18px;;
+	
   }
 
   

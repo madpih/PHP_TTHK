@@ -5,7 +5,7 @@ $kask->execute();
 
 ?>
 
-<h1>List of participants</h1>
+<h1>List of party animals</h1>
     
     <?php
     $rownumber= 1;
@@ -15,6 +15,7 @@ $kask->execute();
         $rownumber = $rownumber + 1;
         echo "<p class='format-p'>".htmlspecialchars($email)."</p>";
 
+        echo "<a href='?page=participants_admin&kustutasid=$id'><button class ='button button1'>Delete this party animal</button></a>";
     }
     ?>
 </body>

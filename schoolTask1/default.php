@@ -2,7 +2,7 @@
 
 <p>
     <img src="images/pexels-cottonbro-studio-3171837.jpg">
-    <h4 class="right">One, two, three, one, two, three, drink<br>
+   <h4 class="right bg">One, two, three, one, two, three, drink<br>
     One, two, three, one, two, three, drink<br>
     One, two, three, one, two, three, drink</h4>
    
