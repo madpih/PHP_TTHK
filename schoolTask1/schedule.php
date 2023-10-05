@@ -3,12 +3,13 @@
 
 <ul>
     <?php
-    $kask=$yhendus->prepare("SELECT id, time_format(startingtime,'%H:%i') as formatted_time, performanceAct FROM schedule order by formatted_time");
-    $kask->bind_result($id, $formatted_time, $performanceAct);
+    $kask=$yhendus->prepare("SELECT id, startingtime, performanceAct FROM schedule order by startingtime");
+    $kask->bind_result($id, $startingtime, $performanceAct);
     $kask->execute();
 
-    while($kask->fetch()){
-        echo "<h1><b>".htmlspecialchars($formatted_time)."</b></h1>";
+       while($kask->fetch()){
+        $datetime = new DateTime($startingtime);
+        echo "<h1><b>".($datetime->format('d.m H:i'))."</b></h1>";
         echo "<b><h4 class='content bg'>".htmlspecialchars($performanceAct)."</h4><b>";
     }
     ?>

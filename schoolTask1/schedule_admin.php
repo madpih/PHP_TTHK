@@ -3,12 +3,15 @@
 <h1>Schedule Management</h1>
 <ul>
 <?php
-$kask=$yhendus->prepare("SELECT id, time_format(startingtime,'%H:%i') as formatted_time FROM schedule order by formatted_time");
-$kask->bind_result($id, $formatted_time);
+
+$kask=$yhendus->prepare("SELECT id, startingtime, performanceAct FROM schedule order by startingtime");
+$kask->bind_result($id, $startingtime,$performanceAct);
 $kask->execute();
 while($kask->fetch()){
+    $datetime = new DateTime($startingtime);
     echo "<li><a href='?page=schedule_admin&id=$id'>".
-    htmlspecialchars($formatted_time)."</a></li>";
+    ($datetime->format('d.m H:i'))."  ".htmlspecialchars($performanceAct)."</a></li>";
+
     }
 ?>
 </ul>
@@ -17,21 +20,18 @@ while($kask->fetch()){
     <a href='?page=schedule_admin&lisamine=jah'><button class ="button button1"> Add new...</button></a>
 <br>
 </div>
-
-
     <?php
         if(isSet($_REQUEST["id"])){
-        $kask=$yhendus->prepare("SELECT id, time_format(startingtime,'%H:%i') as formatted_time, performanceAct FROM schedule
+        $kask=$yhendus->prepare("SELECT id, startingtime, performanceAct FROM schedule
         WHERE id=?");
-
-        $kask->bind_param("i", $_REQUEST["id"]);
-        $kask->bind_result($id, $formatted_time, $performanceAct);
-        $kask->execute();
-        if($kask->fetch()){
-            echo '<h2>'.htmlspecialchars($formatted_time).'</h2>';
-            echo '<h4 class="content">'.htmlspecialchars($performanceAct)."</h4>";
-            echo "<a href='?page=schedule_admin&kustutasid=$id'><button class ='button button1'>Delete event</button></a>";
-        
+            $kask->bind_param("i", $_REQUEST["id"]);
+            $kask->bind_result($id, $startingtime, $performanceAct);
+            $kask->execute();
+            if($kask->fetch()){
+                $datetime = new DateTime($startingtime);
+                echo "<h1><b>".($datetime->format('d.m H:i'))."</b></h1>";
+                echo '<h4 class="content">'.htmlspecialchars($performanceAct)."</h4>";
+                echo "<a href='?page=schedule_admin&kustutasid=$id'><button class ='button button1'>Delete event</button></a>";
         } else {
             echo "Incorrect data.";
         }
@@ -48,7 +48,7 @@ while($kask->fetch()){
             <dl>
             <dt><label for="startingtime">Time:</label></dt>
             <dd>
-            <input id="startingtime" type="time" name="startingtime" />
+            <input id="startingtime" type="datetime-local" name="startingtime"/>
             <br>
             </dd>
             <dt><label for="performanceAct">Performance Act:</label></dt>
